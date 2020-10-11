@@ -1,2 +1,5 @@
 DROP TABLE IF EXISTS task;
+DROP TABLE IF EXISTS project;
+DROP TABLE IF EXISTS account;
+
 

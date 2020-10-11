@@ -1,6 +1,5 @@
 -- for testing 
-INSERT INTO account (account_username)
+INSERT INTO account (account_username, email, password)
 VALUES
-  ('Joe'),
-  ('Sarah'),
-  ('Steve')
+  ('Joe', 'joe@shmo.com', 'password')
+ 

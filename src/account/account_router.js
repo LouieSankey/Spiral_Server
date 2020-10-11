@@ -19,8 +19,8 @@ accountRouter
       .catch(next)
   })
   .post(jsonParser, (req, res, next) => {
-    const { account_username  } = req.body
-    const newAccount = { account_username,  }
+    const { account_username, email, password  } = req.body
+    const newAccount = { account_username, email, password }
 
     for (const [key, value] of Object.entries(newAccount)) {
              if (value == null) {
@@ -42,6 +42,35 @@ accountRouter
       })
       .catch(next)
   })
+
+
+accountRouter
+.route('/email/:email')
+.all((req, res, next) => {
+       AccountService.getByEmail(
+         req.app.get('db'),
+         req.params.email
+       )
+         .then(account => {
+           if (!account) {
+             return res.status(404).json({
+               error: { message: `account doesn't exist` }
+             })
+           }
+           res.account = account // save the account for the next middleware
+           next() // don't forget to call next so the next middleware happens!
+         })
+         .catch(next)
+     })
+.get((req, res, next) => {
+  res.json({
+                 id: res.account.id,
+                 account_username: xss(res.account.account_username), // sanitize account_username
+                 date_published: res.account.date_published,
+               })
+})
+
+
 
 accountRouter
   .route('/:account_id')
@@ -68,6 +97,7 @@ accountRouter
                    date_published: res.account.date_published,
                  })
   })
+
   .delete((req, res, next) => {
     AccountService.deleteAccount(
              req.app.get('db'),

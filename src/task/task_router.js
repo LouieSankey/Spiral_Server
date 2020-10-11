@@ -43,16 +43,17 @@ taskRouter
       .catch(next)
   })  
   
-  
+  //this the full url here is task/project/project_id 
+  //its routing the specific tasks for the project
   taskRouter
-  .route('/project/:project_id')
+  .route('/account/:account_id')
   .all((req, res, next) => {
-    TaskService.getTasksForProject(
+    TaskService.getTasksForAccount(
       req.app.get('db'),
       req.params.account_id
     )
-    .then(projects => {
-      res.json(projects)
+    .then(tasks => {
+      res.json(tasks)
     })
     .catch(next)
 })  

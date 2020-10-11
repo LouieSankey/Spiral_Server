@@ -13,8 +13,8 @@ const TaskService ={
             })
     }, 
 
-    getTasksForProject(knex, project_id) {
-        return knex.from('task').select('*').where('id', project_id)
+    getTasksForAccount(knex, account_id) {
+        return knex.from('task').select('*').where('account', account_id)
     },
 
     getById(knex, id) {

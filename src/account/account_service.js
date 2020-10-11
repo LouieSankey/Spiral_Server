@@ -16,6 +16,10 @@ const AccountService ={
     getById(knex, id) {
            return knex.from('account').select('*').where('id', id).first()
     },
+
+    getByEmail(knex, email) {
+        return knex.from('account').select('*').where('email', email).first()
+    },
     
     deleteAccount(knex, id) {
        return knex('account')
