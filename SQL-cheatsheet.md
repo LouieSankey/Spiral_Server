@@ -88,12 +88,13 @@ Fill (seed) an already made db with tables (or drop them) by running from
 TERMINAL
 `psql -U username -d db_name -f ./sql-script.sql`
 
+(you may have to execute this in heroku cli if migration scrip is giving an error)
 edit, copy and past this in:
-`psql -U postgres -d spiral_test -f ./migrations/001.do.create_tables.sql`
+`psql -U evxxdudvttijxs -d dae3iadu4o5brv -f ./migrations/001.do.create_tables.sql`
 `psql -U postgres -d spiral -f ./seeds/seeds.pref.sql`
 
 
--f ./migrations/001.do.create-bookmarks-table.sql
+-f ./migrations/001.do.create-table.sql
 
 In a script.sql use keyword BEGIN; and COMMIT; to wrap multiple scripts you want
 treated as one
