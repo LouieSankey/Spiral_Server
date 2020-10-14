@@ -89,7 +89,7 @@ TERMINAL
 `psql -U username -d db_name -f ./sql-script.sql`
 
 edit, copy and past this in:
-`psql -U postgres -d spiral -f ./seeds/seeds.projects.sql`
+`psql -U postgres -d spiral_test -f ./migrations/001.do.create_tables.sql`
 `psql -U postgres -d spiral -f ./seeds/seeds.pref.sql`
 
 

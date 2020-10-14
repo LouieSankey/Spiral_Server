@@ -13,8 +13,8 @@ const UserPrefService ={
             })
     }, 
 
-    getById(knex, id) {
-           return knex.from('pref').select('*').where('id', id).first()
+    getByAccountId(knex, account_id) {
+           return knex.from('pref').select('*').where('account', account_id).first()
     },
     
     deleteUserPref(knex, id) {

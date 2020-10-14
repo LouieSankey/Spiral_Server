@@ -1,3 +1,5 @@
+
+
 const express = require('express')
 const xss = require('xss')
 const path = require('path')
@@ -18,9 +20,10 @@ prefRouter
       })
       .catch(next)
   })
+  
   .post(jsonParser, (req, res, next) => {
-    const { account, _1, _2, _3, _5, _8, _13, _21, _34, _55, _89  } = req.body
-    const newUserPref = { account, _1, _2, _3, _5, _8, _13, _21, _34, _55, _89 }
+    const { account, gong, _1, _2, _3, _5, _8, _13, _21, _34, _55, _89  } = req.body
+    const newUserPref = { account, gong, _1, _2, _3, _5, _8, _13, _21, _34, _55, _89 }
 
     for (const [key, value] of Object.entries(newUserPref)) {
              if (value == null) {
@@ -44,11 +47,11 @@ prefRouter
   })
 
 prefRouter
-  .route('/:pref_id')
+  .route('/account/:account_id')
   .all((req, res, next) => {
-         UserPrefService.getById(
+         UserPrefService.getByAccountId(
            req.app.get('db'),
-           req.params.pref_id
+           req.params.account_id
          )
            .then(pref => {
              if (!pref) {
@@ -65,6 +68,7 @@ prefRouter
     res.json({
                    id: res.pref.id,
                    account: res.pref.account,
+                   gong: res.pref.gong,
                    _1: res.pref._1,
                    _2: res.pref._2,
                    _3: res.pref._3, 
@@ -89,8 +93,8 @@ prefRouter
        })
 
        .patch(jsonParser, (req, res, next) => {
-           const { account,  _1, _2, _3, _5, _8, _13, _21, _34, _55, _89 } = req.body
-           const prefToUpdate = { account,  _1, _2, _3, _5, _8, _13, _21, _34, _55, _89  }
+           const { account,  gong, _1, _2, _3, _5, _8, _13, _21, _34, _55, _89 } = req.body
+           const prefToUpdate = { account, gong, _1, _2, _3, _5, _8, _13, _21, _34, _55, _89  }
 
            const numberOfValues = Object.values(prefToUpdate).filter(Boolean).length
              if (numberOfValues === 0) {
