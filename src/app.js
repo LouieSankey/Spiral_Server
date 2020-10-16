@@ -23,11 +23,11 @@ app.use(morgan(morganOption))
 app.use(helmet())
 
 
-app.use('account', accountRouter)
-app.use('project', projectRouter)
-app.use('task', taskRouter)
-app.use('pref', prefsRouter)
-app.use('api/auth', authRouter)
+app.use('/account', accountRouter)
+app.use('/project', projectRouter)
+app.use('/task', taskRouter)
+app.use('/pref', prefsRouter)
+app.use('/api/auth', authRouter)
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')
