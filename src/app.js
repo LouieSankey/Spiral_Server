@@ -24,7 +24,7 @@ app.use(helmet())
 app.use(cors())
 
 
-app.use('/account', accountRouter)
+app.use('account', accountRouter)
 app.use('/project', projectRouter)
 app.use('/task', taskRouter)
 app.use('/pref', prefsRouter)
