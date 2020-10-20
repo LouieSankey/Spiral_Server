@@ -35,11 +35,7 @@ accountRouter
       newAccount
     )
       .then(account => {
-        if (!account) {
-          return res.status(404).json({
-            error: { message: `account doesn't exist` }
-          })
-        }
+        
         res
           .status(201)
           .location(path.posix.join(req.originalUrl, `/${account.id}`))
