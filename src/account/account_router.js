@@ -9,7 +9,7 @@ const jsonParser = express.json()
 
 accountRouter
   .route('/')
-  .get((req, res, next) => {
+  .get((req, res, next) => { 
     AccountService.getAllAccounts(
       req.app.get('db')
     )
