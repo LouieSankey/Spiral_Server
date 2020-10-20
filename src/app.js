@@ -13,6 +13,7 @@ const prefsRouter = require('./user_prefs/prefs_router')
 const authRouter = require('./auth/auth-router')
 
 const app = express()
+app.use(cors())
 
 const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
@@ -20,8 +21,8 @@ const morganOption = (NODE_ENV === 'production')
 
 
 app.use(morgan(morganOption))
-// app.use(helmet())
-app.use(cors())
+ app.use(helmet())
+
 
 
 app.use('/account', accountRouter)
