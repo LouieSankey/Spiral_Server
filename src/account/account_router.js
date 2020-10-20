@@ -46,7 +46,7 @@ accountRouter
 
 
 accountRouter
-.route('/email/:email')
+.route('email/:email')
 .all((req, res, next) => {
        AccountService.getByEmail(
          req.app.get('db'),
