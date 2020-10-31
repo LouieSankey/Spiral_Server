@@ -1,7 +1,7 @@
 const express = require('express')
 const xss = require('xss')
 const path = require('path')
-
+const jwt = require('jsonwebtoken');
 const AccountService = require('./account_service')
 
 const accountRouter = express.Router()
@@ -48,6 +48,9 @@ accountRouter
 accountRouter
 .route('/email/:email')
 .all((req, res, next) => {
+
+  
+
        AccountService.getByEmail(
          req.app.get('db'),
          req.params.email
@@ -63,12 +66,40 @@ accountRouter
          })
          .catch(next)
      })
-.get((req, res, next) => {
-  res.json({
-                 id: res.account.id,
-                 account_username: xss(res.account.account_username), // sanitize account_username
-                 date_published: res.account.date_published,
-               })
+.post(jsonParser, (req, res, next) => {
+
+  const { body } = req;
+  const { email } = body;
+  const { password } = body;
+
+  console.log("username:", res.account.email, email)
+   console.log("password:", res.account.password, password)
+
+
+
+             //checking to make sure the user entered the correct username/password combo
+        if(email === res.account.email && password === res.account.password) { 
+
+          const user = res.account
+
+          //if user log in success, generate a JWT token for the user with a secret key
+          jwt.sign({user}, 'privatekey', { expiresIn: '1h' },(err, token) => {
+              if(err) { console.log(err) } 
+                res.json({
+                   id: res.account.id,
+                   account_username: xss(res.account.account_username), // sanitize account_username
+                   date_published: res.account.date_published,
+                   token: token
+                 })   
+              
+          });
+
+
+      } else {
+          console.log('ERROR: Could not log in');
+      }
+
+
 })
 
 
@@ -76,6 +107,9 @@ accountRouter
 accountRouter
   .route('/:account_id')
   .all((req, res, next) => {
+
+
+
          AccountService.getById(
            req.app.get('db'),
            req.params.account_id
