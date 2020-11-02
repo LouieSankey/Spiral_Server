@@ -23,9 +23,9 @@ const UserPrefService ={
          .delete()
      },
 
-     updateUserPref(knex, id, newUserFields) {
+     updateUserPref(knex, account, newUserFields) {
         return knex('pref')
-          .where({ id })
+          .where({ account })
           .update(newUserFields)
       }
 }

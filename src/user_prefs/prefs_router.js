@@ -92,9 +92,10 @@ prefRouter
              .catch(next)
        })
 
+
        .patch(jsonParser, (req, res, next) => {
-           const { account,  gong, _1, _2, _3, _5, _8, _13, _21, _34, _55, _89 } = req.body
-           const prefToUpdate = { account, gong, _1, _2, _3, _5, _8, _13, _21, _34, _55, _89  }
+           const {  gong, _1, _2, _3, _5, _8, _13, _21, _34, _55, _89 } = req.body
+           const prefToUpdate = { gong, _1, _2, _3, _5, _8, _13, _21, _34, _55, _89  }
 
            const numberOfValues = Object.values(prefToUpdate).filter(Boolean).length
              if (numberOfValues === 0) {
@@ -104,14 +105,15 @@ prefRouter
                  }
                })
              }
-
+            
+             
            UserPrefService.updateUserPref(
                  req.app.get('db'),
-                 req.params.pref_id,
+                 req.params.account_id,
                  prefToUpdate
                )
                  .then(numRowsAffected => {
-                   res.status(204).end()
+                   res.json(numRowsAffected)
                  })
                  .catch(next)
 
