@@ -94,7 +94,9 @@ accountRouter
 
 
       } else {
-          console.log('ERROR: Could not log in');
+        return res.status(404).json({
+          error: { message: `Incorrect Password` }
+        })
       }
 
 
