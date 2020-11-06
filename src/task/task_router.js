@@ -43,8 +43,6 @@ taskRouter
       .catch(next)
   })  
   
-  //this the full url here is task/project/project_id 
-  //its routing the specific tasks for the project
   taskRouter
   .route('/account/:account_id')
   .all((req, res, next) => {
@@ -71,8 +69,8 @@ taskRouter
                  error: { message: `task doesn't exist`}
                })
              }
-             res.task = task // save the task for the next middleware
-             next() // don't forget to call next so the next middleware happens!
+             res.task = task 
+             next() 
            })
            .catch(next)
        })

@@ -1,4 +1,3 @@
-//"project" will be replaced with the name of the table you are using CRUD on in the DB
 const ProjectService ={
     getAllProjects(knex) {
         return knex.select('*').from('project')

@@ -23,12 +23,12 @@ projectRouter
     const newProject = { account, project }
 
     for (const [key, value] of Object.entries(newProject)) {
-             if (value == null) {
-               return res.status(400).json({
-                 error: { message: `Missing '${key}' in request body` }
-               })
-             }
-           }
+      if (value == null) {
+        return res.status(400).json({
+          error: { message: `Missing '${key}' in request body` }
+        })
+      }
+    }
 
     ProjectService.insertProject(
       req.app.get('db'),
@@ -43,78 +43,78 @@ projectRouter
       .catch(next)
   })
 
-  projectRouter
+projectRouter
   .route('/account/:account_id')
   .all((req, res, next) => {
     ProjectService.getProjectsForAccount(
       req.app.get('db'),
       req.params.account_id
     )
-    .then(projects => {
-      res.json(projects)
-    })
-    .catch(next)
-})      
+      .then(projects => {
+        res.json(projects)
+      })
+      .catch(next)
+  })
 
 projectRouter
   .route('/:project_id')
   .all((req, res, next) => {
-         ProjectService.getById(
-           req.app.get('db'),
-           req.params.project_id
-         )
-           .then(project => {
-             if (!project) {
-               return res.status(404).json({
-                 error: { message: `project doesn't exist` }
-               })
-             }
-             res.project = project // save the project for the next middleware
-             next() // don't forget to call next so the next middleware happens!
-           })
-           .catch(next)
-       })
+    ProjectService.getById(
+      req.app.get('db'),
+      req.params.project_id
+    )
+      .then(project => {
+        if (!project) {
+          return res.status(404).json({
+            error: { message: `project doesn't exist` }
+          })
+        }
+        res.project = project
+        next() 
+      })
+      .catch(next)
+  })
   .get((req, res, next) => {
     res.json({
-                   id: res.project.id,
-                   project: xss(res.project.project), // sanitize project
-                   date_published: res.project.date_published,
-                 })
+      id: res.project.id,
+      project: xss(res.project.project),
+      date_published: res.project.date_published,
+    })
   })
   .delete((req, res, next) => {
     ProjectService.deleteProject(
-             req.app.get('db'),
-             req.params.project_id
-           )
-             .then(() => {
-               res.status(204).end()
-             })
-             .catch(next)
-       })
+      req.app.get('db'),
+      req.params.project_id
+    )
+      .then(() => {
+        res.status(204).end()
+      })
+      .catch(next)
+  })
 
-       .patch(jsonParser, (req, res, next) => {
-           const { account, project } = req.body
-           const projectToUpdate = { account, project }
+  .patch(jsonParser, (req, res, next) => {
+    const { account, project } = req.body
+    const projectToUpdate = { account, project }
 
-           const numberOfValues = Object.values(projectToUpdate).filter(Boolean).length
-             if (numberOfValues === 0) {
-               return res.status(400).json({
-                 error: {
-                   message: `Request body must contain either 'account' or 'project'`
-                 }
-               })
-             }
+    const numberOfValues = Object.values(projectToUpdate).filter(Boolean).length
+    if (numberOfValues === 0) {
+      return res.status(400).json({
+        error: {
+          message: `Request body must contain either 'account' or 'project'`
+        }
+      })
+    }
 
-           ProjectService.updateProject(
-                 req.app.get('db'),
-                 req.params.project_id,
-                 projectToUpdate
-               )
-                 .then(numRowsAffected => {
-                   res.status(204).end()
-                 })
-                 .catch(next)
+    ProjectService.updateProject(
+      req.app.get('db'),
+      req.params.project_id,
+      projectToUpdate
+    )
+      .then(numRowsAffected => {
+        res.status(204).end()
+      })
+      .catch(next)
 
-         })
+  })
 
 module.exports = projectRouter
