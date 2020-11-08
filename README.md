@@ -21,70 +21,70 @@ Server built with Javascript & Express, with third party libraries including Mor
 ```
 Account
 {
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  }
-   password: {
-    type: String,
-    required: true
-  }
+    email: {
+        type: String,
+            required: true,
+                unique: true
+    }
+    password: {
+        type: String,
+            required: true
+    }
 }
 
-Project 
+Project
 {
-  project: {
-   type: String,
-   required: true
-  }
-  account: {
-   type: Number,
-   required: true
-  }
+    project: {
+        type: String,
+            required: true
+    }
+    account: {
+        type: Number,
+            required: true
+    }
 }
 
-Task 
+Task
 {
-  project: {
-   type: Number,
-   required: true
-  }
-  account: {
-   type: Number,
-   required: true
-  }
-  task:{
-   type:text,
-   required:true
-  }
-  cycle:{
-   type: Number,
-   required:true
-}
+    project: {
+        type: Number,
+            required: true
+    }
+    account: {
+        type: Number,
+            required: true
+    }
+    task: {
+        type: text,
+            required: true
+    }
+    cycle: {
+        type: Number,
+            required: true
+    }
 
-User_Pref
-{
- account:{
- type: integer,
- required: true
- } 
- gong:{
- type:boolean,
- required: true,
- } 
-  _1: {type: Number}
-  _2: {type: Number}
-  _3: {type: Number}
-  _5: {type: Number}
-  _8: {type: Number}
-  _13: {type: Number}
-  _21: {type: Number}
-  _34: {type: Number}
-  _55: {type: Number}
-  _89: {type: Number}
-  
+    User_Pref
+    {
+        account: {
+            type: integer,
+                required: true
+        }
+        gong: {
+            type: boolean,
+                required: true,
  }
+        _1: { type: Number }
+        _2: { type: Number }
+        _3: { type: Number }
+        _5: { type: Number }
+        _8: { type: Number }
+        _13: { type: Number }
+        _21: { type: Number }
+        _34: { type: Number }
+        _55: { type: Number }
+        _89: { type: Number }
+
+    }
  ```
  ```
  
