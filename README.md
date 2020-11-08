@@ -18,7 +18,7 @@ Server built with Javascript & Express, with third party libraries including Mor
 
 
 ## Schema
-
+```
 Account
 {
   email: {
@@ -85,7 +85,8 @@ User_Pref
   _89: {type: Number}
   
  }
- 
+ ```
+ ```
  
 ## API OVERVIEW
 
@@ -127,6 +128,7 @@ User_Pref
 │   └── DELETE
 │   └── PATCH
 
+```
 
 
 ## POST /account
