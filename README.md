@@ -9,7 +9,7 @@ Live App: https://spiral-ebon.vercel.app/
 ![Screen Shot 2020-11-08 at 10 32 32 AM](https://user-images.githubusercontent.com/8163492/98481239-c69a6c80-21ad-11eb-8773-4e35bebd04ed.png)
 
 
-Use Spiral while doing computer work to help you stay on track, take better breaks, and avoid burnout. 
+Use Spiral while doing computer work to help you manage your time better, take better breaks, keep a record of your work history, and avoid burnout. 
 
 ![Screen Shot 2020-11-05 at 5 20 50 PM](https://user-images.githubusercontent.com/8163492/98314634-45638f80-1f8b-11eb-98f7-2d359b5c39d1.png)
 
