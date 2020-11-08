@@ -6,7 +6,7 @@ Spiral combines an Agile time estimation strategy with the utility of a pomodoro
 
 Live App: https://spiral-ebon.vercel.app/
 
-![spiral](https://user-images.githubusercontent.com/8163492/98481203-8fc45680-21ad-11eb-86d9-b5ea51566c74.png)
+![Screen Shot 2020-11-08 at 10 32 32 AM](https://user-images.githubusercontent.com/8163492/98481239-c69a6c80-21ad-11eb-8773-4e35bebd04ed.png)
 
 
 Use Spiral while doing computer work to help you stay on track, take better breaks, and avoid burnout. 
