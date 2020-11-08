@@ -4,7 +4,7 @@ Copyright 2020 All Rights Reserved
 
 Spiral combines an Agile time estimation strategy with the utility of a pomodoro timer to give you an incredibly simple all in one time managment tool. 
 
-Live App: https://spiral-ebon.vercel.app/
+Minimum Viable Product: https://spiral-ebon.vercel.app/
 
 ![Screen Shot 2020-11-08 at 10 32 32 AM](https://user-images.githubusercontent.com/8163492/98481239-c69a6c80-21ad-11eb-8773-4e35bebd04ed.png)
 
