@@ -12,4 +12,78 @@ Use Spiral while doing computer work to help you stay on track, take better brea
 
 ![Screen Shot 2020-11-05 at 5 20 50 PM](https://user-images.githubusercontent.com/8163492/98314634-45638f80-1f8b-11eb-98f7-2d359b5c39d1.png)
 
-Server built with Javascript & Express, with third party libraries including Morgan, Helment, and CORS. 
+Server built with Javascript & Express, with third party libraries including Morgan, Helment, and CORS. \
+
+API Documentation
+
+Account
+{
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  }
+   password: {
+    type: String,
+    required: true
+  }
+}
+
+Project 
+{
+  project: {
+   type: String,
+   required: true
+  }
+  account: {
+   type: Number,
+   required: true
+  }
+}
+
+Task 
+{
+  project: {
+   type: Number,
+   required: true
+  }
+  account: {
+   type: Number,
+   required: true
+  }
+  task:{
+   type:text,
+   required:true
+  }
+  cycle:{
+   type: Number,
+   required:true
+}
+
+User_Pref
+{
+ account:{
+ type: integer,
+ required: true
+ } 
+ gong:{
+ type:boolean,
+ required: true,
+ } 
+  _1: {type: Number}
+  _2: {type: Number}
+  _3: {type: Number}
+  _5: {type: Number}
+  _8: {type: Number}
+  _13: {type: Number}
+  _21: {type: Number}
+  _34: {type: Number}
+  _55: {type: Number}
+  _89: {type: Number}
+  
+ }
+
+
+
+
+
