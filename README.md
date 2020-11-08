@@ -249,7 +249,6 @@ Task
  ## POST /pref
   ```
  //req.body
- [
    {
       account: Number,
       gong: Boolean,
@@ -264,12 +263,12 @@ Task
       _55: Number,
       _89: Number
     }
-  ]
   ```
  
  ## GET /pref
   ```
  //res.body
+ [
  
  {
     account: Number,
@@ -285,5 +284,6 @@ Task
     _55: Number,
     _89: Number
   }
+  ]
   ```
 
