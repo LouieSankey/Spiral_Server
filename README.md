@@ -14,7 +14,9 @@ Use Spiral while doing computer work to help you stay on track, take better brea
 
 Server built with Javascript & Express, with third party libraries including Morgan, Helment, and CORS. \
 
-API Documentation
+
+
+Schema
 
 Account
 {
@@ -82,6 +84,87 @@ User_Pref
   _89: {type: Number}
   
  }
+ 
+ 
+API OVERVIEW
+
+├── /account
+│   └── GET
+│   └── POST
+├── /email/:email
+│   └── GET
+│   └── POST
+├── /account_id
+│   └── GET
+│   └── DELETE
+
+├── /project
+│   └── GET
+│   └── POST
+├── /account/:account_id
+│   └── GET
+├── /project_id
+│   └── GET
+│   └── DELETE
+
+├── /task
+│   └── GET
+│   └── POST
+├── /account/:account_id
+│   └── GET
+├── /task_id
+│   └── GET
+│   └── DELETE
+
+├── /pref
+│   └── GET
+│   └── POST
+├── /account/:account_id
+│   └── GET
+├── /task_id
+│   └── GET
+│   └── DELETE
+│   └── PATCH
+
+
+GET /account
+
+// res.body
+[
+  {
+    id: Number,
+    username: String,
+    password: String
+  }
+]
+
+
+POST /account
+
+// req.body
+{
+  username: String,
+  password: String
+}
+
+GET /account/email/:email
+
+  {
+    id: Number,
+    username: String, //the users email
+    password: String
+  }
+
+POST /account/email/:email
+
+// req.body 
+{
+  account_username: String,   //users email
+  username: String,
+  password: String
+}
+
+
 
 
 
