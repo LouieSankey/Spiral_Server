@@ -86,10 +86,10 @@ Task
 
     }
  ```
- ```
  
+  
 ## API OVERVIEW
-
+ ```
 ├── /account
 │   └── GET
 │   └── POST
@@ -132,7 +132,7 @@ Task
 
 
 ## POST /account
-
+ ```
 // req.body
 {
   account_username: String,
@@ -140,8 +140,10 @@ Task
   password: String
 }
 
-GET /account
+ ```
 
+## GET /account
+ ```
 // res.body
 [
   {
@@ -151,11 +153,10 @@ GET /account
     password: String
   }
 ]
-
-
+ ```
 
 ## POST /account/email/:email
-
+ ```
 // req.body 
 {
   email: String,
@@ -166,29 +167,27 @@ GET /account
 {
   id: Number
 }
- 
- 
-  
-## GET /account_id
+```
 
+## GET /account_id
+ ```
 //res.body
 {
   id: Number
 }
-
-
+ ```
 
 ## POST /project
-
+ ```
 //res.body
 {
  account: Number,
  project: String
 }
-
+ ```
 
 ## GET /project
-
+ ```
 //res.body
 [
   {
@@ -197,16 +196,19 @@ GET /account
     project: String
   }
 ]
-
+ ```
 
 ## GET /project_id
+ ```
 //res.body
 
 {
   project:String
 }
+ ```
 
 ## POST /task
+ ```
 //req.body
 
 {
@@ -215,8 +217,10 @@ GET /account
     task: String,
     cycle: Number
 }
+ ```
 
 ## GET /task/account/:account_id
+ ```
 //res.body
 [
   {
@@ -227,9 +231,10 @@ GET /account
     cycle: Number
    }
 ]
-
+ ```
 
 ## GET /task/:id
+ ```
 //res.body
   {
     id: Number,
@@ -238,9 +243,11 @@ GET /account
     task: String,
     cycle: Number
    }
+```
    
    
  ## POST /pref
+  ```
  //req.body
  [
    {
@@ -258,9 +265,10 @@ GET /account
       _89: Number
     }
   ]
- 
+  ```
  
  ## GET /pref
+  ```
  //res.body
  
  {
@@ -277,5 +285,5 @@ GET /account
     _55: Number,
     _89: Number
   }
- 
+  ```
 
