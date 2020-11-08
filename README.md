@@ -17,7 +17,7 @@ Server built with Javascript & Express, with third party libraries including Mor
 
 
 
-Schema
+## Schema
 
 Account
 {
@@ -87,7 +87,7 @@ User_Pref
  }
  
  
-API OVERVIEW
+## API OVERVIEW
 
 ├── /account
 │   └── GET
@@ -129,7 +129,7 @@ API OVERVIEW
 
 
 
-POST /account
+## POST /account
 
 // req.body
 {
@@ -152,7 +152,7 @@ GET /account
 
 
 
-POST /account/email/:email
+## POST /account/email/:email
 
 // req.body 
 {
@@ -167,7 +167,7 @@ POST /account/email/:email
  
  
   
-GET /account_id
+## GET /account_id
 
 //res.body
 {
@@ -176,7 +176,7 @@ GET /account_id
 
 
 
-POST /project
+## POST /project
 
 //res.body
 {
@@ -185,7 +185,7 @@ POST /project
 }
 
 
-GET /project
+## GET /project
 
 //res.body
 [
@@ -197,14 +197,14 @@ GET /project
 ]
 
 
-GET /project_id
+## GET /project_id
 //res.body
 
 {
   project:String
 }
 
-POST /task
+## POST /task
 //req.body
 
 {
@@ -214,7 +214,7 @@ POST /task
     cycle: Number
 }
 
-GET /task/account/:account_id
+## GET /task/account/:account_id
 //res.body
 [
   {
@@ -227,7 +227,7 @@ GET /task/account/:account_id
 ]
 
 
-GET /task/:id
+## GET /task/:id
 //res.body
   {
     id: Number,
@@ -238,7 +238,7 @@ GET /task/:id
    }
    
    
- POST /pref
+ ## POST /pref
  //req.body
  [
    {
@@ -258,7 +258,7 @@ GET /task/:id
   ]
  
  
-  GET /pref
+ ## GET /pref
  //res.body
  
  {
