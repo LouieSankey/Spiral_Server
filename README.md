@@ -127,46 +127,152 @@ API OVERVIEW
 │   └── PATCH
 
 
+
+POST /account
+
+// req.body
+{
+  account_username: String,
+  email: String,
+  password: String
+}
+
 GET /account
 
 // res.body
 [
   {
     id: Number,
-    username: String,
+    account_username: String,
+    email: String,
     password: String
   }
 ]
 
 
-POST /account
-
-// req.body
-{
-  username: String,
-  password: String
-}
-
-GET /account/email/:email
-
-  {
-    id: Number,
-    username: String, //the users email
-    password: String
-  }
 
 POST /account/email/:email
 
 // req.body 
 {
-  account_username: String,   //users email
-  username: String,
+  email: String,
   password: String
+}
+
+//res.body
+{
+  id: Number
+}
+ 
+ 
+  
+GET /account_id
+
+//res.body
+{
+  id: Number
 }
 
 
 
+POST /project
+
+//res.body
+{
+ account: Number,
+ project: String
+}
 
 
+GET /project
 
+//res.body
+[
+  {
+    id: Number,
+    account: Number,
+    project: String
+  }
+]
+
+
+GET /project_id
+//res.body
+
+{
+  project:String
+}
+
+POST /task
+//req.body
+
+{
+    account: Number,
+    project: Number,
+    task: String,
+    cycle: Number
+}
+
+GET /task/account/:account_id
+//res.body
+[
+  {
+    id: Number,
+    account: Number,
+    project: Number,
+    task: String,
+    cycle: Number
+   }
+]
+
+
+GET /task/:id
+//res.body
+  {
+    id: Number,
+    account: Number,
+    project: Number,
+    task: String,
+    cycle: Number
+   }
+   
+   
+ POST /pref
+ //req.body
+ [
+   {
+      account: Number,
+      gong: Boolean,
+      _1: Number,
+      _2: Number,
+      _3: Number,
+      _5: Number,
+      _8: Number,
+      _13: Number,
+      _21: Number,
+      _34: Number,
+      _55: Number,
+      _89: Number
+    }
+  ]
+ 
+ 
+  GET /pref
+ //res.body
+ 
+ {
+    account: Number,
+    gong: Boolean,
+    _1: Number,
+    _2: Number,
+    _3: Number,
+    _5: Number,
+    _8: Number,
+    _13: Number,
+    _21: Number,
+    _34: Number,
+    _55: Number,
+    _89: Number
+  }
+ 
 
