@@ -1,8 +1,8 @@
-const UserPrefService ={
+const UserPrefService = {
     getAllUserPrefs(knex) {
         return knex.select('*').from('pref')
-    }, 
-    
+    },
+
     insertUserPref(knex, newUserPref) {
         return knex
             .insert(newUserPref)
@@ -11,23 +11,23 @@ const UserPrefService ={
             .then(rows => {
                 return rows[0]
             })
-    }, 
+    },
 
     getByAccountId(knex, account_id) {
-           return knex.from('pref').select('*').where('account', account_id).first()
+        return knex.from('pref').select('*').where('account', account_id).first()
     },
-    
-    deleteUserPref(knex, id) {
-       return knex('pref')
-         .where({ id })
-         .delete()
-     },
 
-     updateUserPref(knex, account, newUserFields) {
+    deleteUserPref(knex, id) {
         return knex('pref')
-          .where({ account })
-          .update(newUserFields)
-      }
+            .where({ id })
+            .delete()
+    },
+
+    updateUserPref(knex, account, newUserFields) {
+        return knex('pref')
+            .where({ account })
+            .update(newUserFields)
+    }
 }
 
 module.exports = UserPrefService

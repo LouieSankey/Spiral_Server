@@ -77,6 +77,7 @@ accountRouter
         if (err) { console.log(err) }
         res.json({
           id: res.account.id,
+          email: res.account.email,
           account_username: xss(res.account.account_username),
           date_published: res.account.date_published,
           token: token
@@ -99,8 +100,6 @@ accountRouter
 accountRouter
   .route('/:account_id')
   .all((req, res, next) => {
-
-
 
     AccountService.getById(
       req.app.get('db'),

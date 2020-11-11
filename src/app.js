@@ -9,7 +9,6 @@ const accountRouter = require('./account/account_router')
 const projectRouter = require('./project/project_router')
 const taskRouter = require('./task/task_router')
 const prefsRouter = require('./user_prefs/prefs_router')
-const authRouter = require('./auth/auth-router')
 
 const app = express()
 app.use(cors())
@@ -27,7 +26,6 @@ app.use('/account', accountRouter)
 app.use('/project', projectRouter)
 app.use('/task', taskRouter)
 app.use('/pref', prefsRouter)
-app.use('/api/auth', authRouter)
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')

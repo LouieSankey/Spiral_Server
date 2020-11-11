@@ -4,7 +4,7 @@ function makeAccounts() {
     {
       id: 1,
       account_username: 'username',
-      email: 'fsd@fds.com',
+      email: 'test@email.com',
       password: 'password',
       date_published: '2029-01-22T16:28:32.615Z',
      },
@@ -29,6 +29,12 @@ function makeProjects() {
     {
       id: 2,
       project: 'Second project',
+      account: 1,
+      date_published: '2029-01-22T16:28:32.615Z',
+    },
+    {
+      id: 3,
+      project: 'Project for different account',
       account: 2,
       date_published: '2029-01-22T16:28:32.615Z',
     }
@@ -54,11 +60,50 @@ function makeTasks() {
       cycle: 5,
       date_published: '2029-01-22T16:28:32.615Z',
     }
-   
+    
   ];
 }
 
+
+function makePref() {
+  return [
+    {
+      id:1,
+      account: 1,
+      gong: true,
+      _1: 0,
+      _2: 0,
+      _3: 0,
+      _5: 0,
+      _8: 0,
+      _13: 0,
+      _21: 0,
+      _34: 0,
+      _55: 0,
+      _89: 0,
+      date_published: '2029-01-22T16:28:32.615Z'
+     },
+     {
+      id:2,
+      account: 2,
+      gong: true,
+      _1: 0,
+      _2: 0,
+      _3: 0,
+      _5: 0,
+      _8: 0,
+      _13: 0,
+      _21: 0,
+      _34: 0,
+      _55: 0,
+      _89: 0,
+      date_published: '2029-01-22T16:28:32.615Z'
+     },
+  ]
+}
+
 module.exports = {
+  makePref,
   makeAccounts,
   makeProjects,
   makeTasks

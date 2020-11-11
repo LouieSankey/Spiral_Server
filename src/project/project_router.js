@@ -78,6 +78,7 @@ projectRouter
     res.json({
       id: res.project.id,
       project: xss(res.project.project),
+      account:(res.project.account),
       date_published: res.project.date_published,
     })
   })
