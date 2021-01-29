@@ -1,12 +1,15 @@
 ![spiral-icon](https://user-images.githubusercontent.com/8163492/106222026-85ee3600-6193-11eb-808b-e01853c7bf3b.png)
 
+Spiral - Mindfulness, Productivity.
 
+Server built with Node.js, Express, Knex, and Postgres. 
 
 Live App: https://spiral-ebon.vercel.app/
 
 Client Repo: https://github.com/LouieSankey/Spiral-React/
 
-Server built with Javascript & Express, with third party libraries including Morgan, Helment, and CORS. \
+## Spiral
+
 
 Spiral combines an Agile time estimation strategy with the utility of a pomodoro timer to give you an incredibly simple all in one time managment tool. 
 
