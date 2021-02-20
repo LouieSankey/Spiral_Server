@@ -111,9 +111,12 @@ projectRouter
       req.params.project_id,
       projectToUpdate
     )
-      .then(numRowsAffected => {
-        res.status(204).end()
-      })
+    .then(update => {
+      res.json(update)
+    })
+      // .then(numRowsAffected => {
+      //   res.status(204).end()
+      // })
       .catch(next)
 
   })

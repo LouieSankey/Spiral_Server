@@ -14,6 +14,7 @@ accountRouter
       req.app.get('db')
     )
       .then(accounts => {
+        accounts.password = "xxxxxxx"
         res.json(accounts)
       })
       .catch(next)

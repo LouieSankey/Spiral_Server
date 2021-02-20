@@ -33,15 +33,7 @@ describe('Accounts Endpoints', function() {
 
            })
 
-  describe('Given there are accounts in the database', () => {
 
-    it('GET /account responds with 200 and all of the accounts', () => {
-      return supertest(app)
-        .get('/account')
-        .expect(200, testAccounts)
-    })
-
-  })
 
   describe('POST /account/email/:email', () => {
 
