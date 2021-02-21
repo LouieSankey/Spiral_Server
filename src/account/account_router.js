@@ -15,7 +15,7 @@ accountRouter
     )
       .then(accounts => {
         accounts.map(account => {
-          account.password = "xxxxxxxxx"
+          // account.password = "xxxxxxxxx"
           return account
         })
       
