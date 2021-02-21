@@ -14,11 +14,6 @@ accountRouter
       req.app.get('db')
     )
       .then(accounts => {
-        accounts.map(account => {
-          // account.password = "xxxxxxxxx"
-          return account
-        })
-      
         res.json(accounts)
       })
       .catch(next)
