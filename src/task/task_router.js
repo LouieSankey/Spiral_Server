@@ -45,7 +45,7 @@ taskRouter
   
   taskRouter
   .route('/account/:account_id')
-  .all((req, res, next) => {
+  .get((req, res, next) => {
     TaskService.getTasksForAccount(
       req.app.get('db'),
       req.params.account_id
@@ -55,6 +55,31 @@ taskRouter
     })
     .catch(next)
 })  
+.post(jsonParser, (req, res, next) => {
+    const {account, project, timeRange} = req.body
+    const params = { account, project, timeRange }
+
+    for (const [key, value] of Object.entries(params)) {
+             if (value == null) {
+               return res.status(400).json({
+                 error: { message: `Missing '${key}' in request body` }
+               })
+             }
+           }
+
+    TaskService.getTasksForRange(
+      req.app.get('db'),
+      req.params.account_id,
+      params
+    )
+      .then(tasks => {
+        res
+          .status(201)
+          .location(path.posix.join(req.originalUrl, `/${tasks.id}`))
+          .json([tasks])
+      })
+      .catch(next)
+  })  
 
 taskRouter
   .route('/:task_id')
