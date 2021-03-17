@@ -1,22 +1,19 @@
-## Spiral Productivity
+![spiral-icon](https://user-images.githubusercontent.com/8163492/106222026-85ee3600-6193-11eb-808b-e01853c7bf3b.png)
 
-Copyright 2020 All Rights Reserved
+Spiral - Mindfulness, Productivity.
+
+Server built with Node.js, Express, Knex, and Postgres. 
+
+Live App: https://spiral-ebon.vercel.app/
+
+Client Repo: https://github.com/LouieSankey/Spiral-React/
+
+## Spiral
+
 
 Spiral combines an Agile time estimation strategy with the utility of a pomodoro timer to give you an incredibly simple all in one time managment tool. 
 
-Live MVP: https://spiral-ebon.vercel.app/
-
-![Screen Shot 2020-11-08 at 10 32 32 AM](https://user-images.githubusercontent.com/8163492/98481239-c69a6c80-21ad-11eb-8773-4e35bebd04ed.png)
-
-
-Use Spiral while doing computer work to help you manage your time, take better breaks, and avoid burnout. 
-
-Use the tracking feature to keep a record of your work history.
-
-![Screen Shot 2020-11-05 at 5 20 50 PM](https://user-images.githubusercontent.com/8163492/98314634-45638f80-1f8b-11eb-98f7-2d359b5c39d1.png)
-
-Server built with Javascript & Express, with third party libraries including Morgan, Helment, and CORS. \
-
+Copyright 2020 All Rights Reserved
 
 
 ## Schema
