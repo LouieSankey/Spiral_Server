@@ -14,16 +14,14 @@ const TaskService ={
     }, 
 
     getTasksForAccount(knex, account_id) {
-        console.log("incorrect")
-
         return knex.from('task').select('*').where('account', account_id)
     },
 
     getTasksForRange(knex, account_id, params) {
         let tasks = knex.from('task').select('*').where('account', account_id)
         .where('project', params.project)
-        //.where('date_published', '>', params.timeRange)
-
+        .where('date_published', '<', params.dateTo)
+        .where('date_published', '>', params.dateFrom)
         return tasks
         
     },

@@ -56,8 +56,8 @@ taskRouter
     .catch(next)
 })  
 .post(jsonParser, (req, res, next) => {
-    const {account, project, timeRange} = req.body
-    const params = { account, project, timeRange }
+    const {account, project, dateTo, dateFrom} = req.body
+    const params = { account, project, dateTo, dateFrom }
 
     for (const [key, value] of Object.entries(params)) {
              if (value == null) {

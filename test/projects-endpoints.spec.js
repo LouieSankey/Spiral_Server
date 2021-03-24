@@ -69,7 +69,6 @@ describe('Projects Endpoints', function () {
             .expect(200);
         })
         .then(res => {
-          console.log("my object", JSON.stringify(res.body))
           expect(res.body).to.be.an('object');
           expect(res.body).to.include.keys('account', 'date_published', 'id', 'project');
           expect(res.body.id).to.equal(doc.id);
