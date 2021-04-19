@@ -1,6 +1,8 @@
 const express = require('express')
 const xss = require('xss')
 const path = require('path')
+const authenticate = require('../jwtAuthenticate')
+
 
 const ProjectService = require('./project_service')
 
@@ -9,16 +11,17 @@ const jsonParser = express.json()
 
 projectRouter
   .route('/')
-  .get((req, res, next) => {
-    ProjectService.getAllProjects(
-      req.app.get('db')
-    )
-      .then(projects => {
-        res.json(projects)
-      })
-      .catch(next)
-  })
-  .post(jsonParser, (req, res, next) => {
+  // .get((req, res, next) => {
+  //   ProjectService.getAllProjects(
+  //     req.app.get('db')
+  //   )
+  //     .then(projects => {
+  //       res.json(projects)
+  //     })
+  //     .catch(next)
+  // })
+
+  .post(jsonParser, authenticate, (req, res, next) => {
     const { account, project } = req.body
     const newProject = { account, project }
 
@@ -45,7 +48,8 @@ projectRouter
 
 projectRouter
   .route('/account/:account_id')
-  .all((req, res, next) => {
+  .get( authenticate, (req, res, next) => {
+  
     ProjectService.getProjectsForAccount(
       req.app.get('db'),
       req.params.account_id
@@ -57,8 +61,9 @@ projectRouter
   })
 
 projectRouter
-  .route('/:project_id')
-  .all((req, res, next) => {
+  .route('/:project_id/:account_id')
+  .all(authenticate, (req, res, next) => {
+  
     ProjectService.getById(
       req.app.get('db'),
       req.params.project_id
@@ -93,7 +98,7 @@ projectRouter
       .catch(next)
   })
 
-  .patch(jsonParser, (req, res, next) => {
+  .patch(jsonParser, authenticate, (req, res, next) => {
     const { account, project } = req.body
     const projectToUpdate = { account, project }
 

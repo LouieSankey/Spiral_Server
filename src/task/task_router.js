@@ -1,24 +1,23 @@
 const express = require('express')
 const xss = require('xss')
 const path = require('path')
-
+const authenticate = require('../jwtAuthenticate')
 const TaskService = require('./task_service')
-
 const taskRouter = express.Router()
 const jsonParser = express.json()
 
 taskRouter
   .route('/')
-  .get((req, res, next) => {
-    TaskService.getAllTasks(
-      req.app.get('db')
-    )
-      .then(tasks => {
-        res.json(tasks) 
-      })
-      .catch(next)
-  })
-  .post(jsonParser, (req, res, next) => {
+  // .get(authenticate, (req, res, next) => {
+  //   TaskService.getAllTasks(
+  //     req.app.get('db')
+  //   )
+  //     .then(tasks => {
+  //       res.json(tasks) 
+  //     })
+  //     .catch(next)
+  // })
+  .post(jsonParser, authenticate, (req, res, next) => {
     const { account, project, task, cycle} = req.body
     const newTask = { account, project, task, cycle }
 
@@ -45,7 +44,7 @@ taskRouter
   
   taskRouter
   .route('/account/:account_id')
-  .get((req, res, next) => {
+  .get(authenticate, (req, res, next) => {
     TaskService.getTasksForAccount(
       req.app.get('db'),
       req.params.account_id
@@ -82,8 +81,8 @@ taskRouter
   })  
 
 taskRouter
-  .route('/:task_id')
-  .all((req, res, next) => {
+  .route('/:task_id/:account_id')
+  .all(authenticate, (req, res, next) => {
          TaskService.getById(
            req.app.get('db'),
            req.params.task_id

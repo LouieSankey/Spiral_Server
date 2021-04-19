@@ -1,0 +1,49 @@
+//creates a new account
+POST http://localhost:8000/account/
+Content-Type: application/json
+
+{
+    "email": "test55@test.com",
+    "account_username": "test 54",
+    "password": "testpassword204"
+}
+
+###
+
+//logs the user in (returns the token)
+POST http://localhost:8000/account/email/test20@test.com
+Content-Type: application/json
+
+{
+    "email": "test20@test.com",
+    "account_username": "",
+    "password": "testpassword20"
+}
+
+### 
+//gets projects for a specific account
+GET http://localhost:8000/project/account/38
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxOCwiYWNjb3VudF91c2VybmFtZSI6InRlc3QgOCIsImVtYWlsIjoidGVzdDhAdGVzdC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQvNHMuMzVZTEk5UjNqOUUvbEhGN1guVEFra0FqOHJITGd4YWhCWktWZEx0VVNsVnRlRGxzbSIsImRhdGVfcHVibGlzaGVkIjoiMjAyMS0wNC0xNlQyMzo1NzoyOS44MjNaIn0sImlhdCI6MTYxODYyMTk2MH0.eFi0xUE-5WxjAgZT5hJYAIYJU1LKMh89CgeuDZgmGXM
+
+###
+//posts a new project to a users account
+POST http://localhost:8000/project/
+Content-Type: application/json
+
+{
+    "email": "test@test.com",
+    "account_username": "",
+    "password": "testpassword"
+}
+
+
+###
+
+GET http://localhost:8000/project/account/55
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1NSwiYWNjb3VudF91c2VybmFtZSI6InRlc3QgNTQiLCJlbWFpbCI6InRlc3Q1NUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJEtLTzJNUjNPQnlKY1pnVTBkTTVjSnUzOFgzRGdEQ3dFVXN4aDlZWHk1cEJLQVJlcU9GSlhDIiwiZGF0ZV9wdWJsaXNoZWQiOiIyMDIxLTA0LTE4VDE4OjAyOjMxLjAzOFoifSwiaWF0IjoxNjE4NzY4OTUxfQ.JDqWLPHhqdg2IQYLlNkJgfSVL5WUE5IDOl8FxbulwLM
+
+
+###
+GET http://localhost:8000/account/55
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1NSwiYWNjb3VudF91c2VybmFtZSI6InRlc3QgNTQiLCJlbWFpbCI6InRlc3Q1NUB0ZXN0LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJEtLTzJNUjNPQnlKY1pnVTBkTTVjSnUzOFgzRGdEQ3dFVXN4aDlZWHk1cEJLQVJlcU9GSlhDIiwiZGF0ZV9wdWJsaXNoZWQiOiIyMDIxLTA0LTE4VDE4OjAyOjMxLjAzOFoifSwiaWF0IjoxNjE4NzY4OTUxfQ.JDqWLPHhqdg2IQYLlNkJgfSVL5WUE5IDOl8FxbulwLM
+

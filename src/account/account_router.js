@@ -1,26 +1,38 @@
+const authenticate = require('../jwtAuthenticate')
+
 const express = require('express')
 const xss = require('xss')
 const path = require('path')
-const jwt = require('jsonwebtoken');
 const AccountService = require('./account_service')
-
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken');
 const accountRouter = express.Router()
 const jsonParser = express.json()
 
+
+
 accountRouter
   .route('/')
-  .get((req, res, next) => {
-    AccountService.getAllAccounts(
-      req.app.get('db')
-    )
-      .then(accounts => {
-        res.json(accounts)
-      })
-      .catch(next)
-  })
-  .post(jsonParser, (req, res, next) => {
-    const { account_username, email, password } = req.body
-    const newAccount = { account_username, email, password }
+  //I think this will get deleted
+  // .get((req, res, next) => {
+  //   AccountService.getAllAccounts(
+  //     req.app.get('db')
+  //   )
+  //     .then(accounts => {
+  //       res.json(accounts)
+  //     })
+  //     .catch(next)
+  // })
+
+
+  //this creates a new account
+  .post(jsonParser, async (req, res, next) => {
+
+    const salt = await bcrypt.genSalt()
+    const hashedPassword = await bcrypt.hash(req.body.password, salt)
+ 
+    const { account_username, email } = req.body
+    const newAccount = { account_username, email, password: hashedPassword }
 
     for (const [key, value] of Object.entries(newAccount)) {
       if (value == null) {
@@ -36,19 +48,26 @@ accountRouter
     )
       .then(account => {
 
-        res
+        const user = account
+        jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, (err, token) => {
+          account.token = token
+          res
           .status(201)
           .location(path.posix.join(req.originalUrl, `/${account.id}`))
           .json(account)
       })
+        })
+      
       .catch(next)
   })
 
 
+//logs the user in (getAccountByEmail in client)
 accountRouter
   .route('/email/:email')
   .all((req, res, next) => {
 
+  //this checks to make sure the email exists in the db and happens before the post request
     AccountService.getByEmail(
       req.app.get('db'),
       req.params.email
@@ -64,16 +83,18 @@ accountRouter
       })
       .catch(next)
   })
-  .post(jsonParser, (req, res, next) => {
+
+  .post(jsonParser, async (req, res, next) => {
 
     const { body } = req;
     const { email } = body;
     const { password } = body;
 
-    if (email === res.account.email && password === res.account.password) {
+    //comparing the posted email and password to the response email and password
+    if (await bcrypt.compare(password, res.account.password)) {
 
       const user = res.account
-      jwt.sign({ user }, 'privatekey', { expiresIn: '1h' }, (err, token) => {
+      jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, (err, token) => {
         if (err) { console.log(err) }
         res.json({
           id: res.account.id,
@@ -81,25 +102,20 @@ accountRouter
           account_username: xss(res.account.account_username),
           date_published: res.account.date_published,
           token: token
+
         })
-
       });
-
-
     } else {
       return res.status(404).json({
-        error: { message: `Incorrect Password` }
+        error: { message: `Invalid Credentials` }
       })
     }
 
-
   })
-
-
 
 accountRouter
   .route('/:account_id')
-  .all((req, res, next) => {
+  .all( authenticate, (req, res, next) => {
 
     AccountService.getById(
       req.app.get('db'),
@@ -117,47 +133,11 @@ accountRouter
       .catch(next)
   })
   .get((req, res, next) => {
-    res.json({
+    return res.json({
       id: res.account.id,
       account_username: xss(res.account.account_username), 
       date_published: res.account.date_published,
     })
-  })
-
-  .delete((req, res, next) => {
-    AccountService.deleteAccount(
-      req.app.get('db'),
-      req.params.account_id
-    )
-      .then(() => {
-        res.status(204).end()
-      })
-      .catch(next)
-  })
-
-  .patch(jsonParser, (req, res, next) => {
-    const { account_username } = req.body
-    const accountToUpdate = { account_username, }
-
-    const numberOfValues = Object.values(accountToUpdate).filter(Boolean).length
-    if (numberOfValues === 0) {
-      return res.status(400).json({
-        error: {
-          message: `Request body must contain either 'account_username' or ''`
-        }
-      })
-    }
-
-    AccountService.updateAccount(
-      req.app.get('db'),
-      req.params.account_id,
-      accountToUpdate
-    )
-      .then(numRowsAffected => {
-        res.status(204).end()
-      })
-      .catch(next)
-
   })
 
 module.exports = accountRouter
