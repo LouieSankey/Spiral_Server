@@ -90,8 +90,8 @@ TERMINAL
 
 (you may have to execute this in heroku cli if migration scrip is giving an error)
 edit, copy and past this in:
-`psql -U evxxdudvttijxs -d dae3iadu4o5brv -f ./migrations/001.do.create_tables.sql`
-`psql -U postgres -d spiral -f ./seeds/seeds.pref.sql`
+`psql -U evxxdudvttijxs -d dae3iadu4o5brv -f ./migrations/002.do.create_user_prefs_table.sql`
+`psql -U postgres -d spiral -f ./migrations/002.do.create_user_prefs_table.sql`
 
 
 -f ./migrations/001.do.create-table.sql

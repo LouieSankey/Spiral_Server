@@ -11,16 +11,6 @@ const jsonParser = express.json()
 
 projectRouter
   .route('/')
-  // .get((req, res, next) => {
-  //   ProjectService.getAllProjects(
-  //     req.app.get('db')
-  //   )
-  //     .then(projects => {
-  //       res.json(projects)
-  //     })
-  //     .catch(next)
-  // })
-
   .post(jsonParser, authenticate, (req, res, next) => {
     const { account, project } = req.body
     const newProject = { account, project }
@@ -119,9 +109,7 @@ projectRouter
     .then(update => {
       res.json(update)
     })
-      // .then(numRowsAffected => {
-      //   res.status(204).end()
-      // })
+
       .catch(next)
 
   })

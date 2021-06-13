@@ -1,5 +1,3 @@
-
-
 const express = require('express')
 const xss = require('xss')
 const path = require('path')
@@ -22,8 +20,9 @@ prefRouter
   })
 
   .post(jsonParser, (req, res, next) => {
-    const { account, gong, _1, _2, _3, _5, _8, _13, _21, _34, _55, _89 } = req.body
-    const newUserPref = { account, gong, _1, _2, _3, _5, _8, _13, _21, _34, _55, _89 }
+
+    const {account, gong, elapsed_time_until_break, break_duration, idle_reset} = req.body
+    const newUserPref = { account, gong, elapsed_time_until_break, break_duration, idle_reset }
 
     for (const [key, value] of Object.entries(newUserPref)) {
       if (value == null) {
@@ -69,16 +68,10 @@ prefRouter
       id: res.pref.id,
       account: res.pref.account,
       gong: res.pref.gong,
-      _1: res.pref._1,
-      _2: res.pref._2,
-      _3: res.pref._3,
-      _5: res.pref._5,
-      _8: res.pref._8,
-      _13: res.pref._13,
-      _21: res.pref._21,
-      _34: res.pref._34,
-      _55: res.pref._55,
-      _89: res.pref._89
+      elapsed_time_until_break: res.pref.elapsed_time_until_break,
+      break_duration: res.pref.break_duration,
+      idle_reset: res.pref.idle_reset,
+    
     })
   })
   .delete((req, res, next) => {
@@ -94,8 +87,8 @@ prefRouter
 
 
   .patch(jsonParser, (req, res, next) => {
-    const { gong, _1, _2, _3, _5, _8, _13, _21, _34, _55, _89 } = req.body
-    const prefToUpdate = { gong, _1, _2, _3, _5, _8, _13, _21, _34, _55, _89 }
+    const { gong,elapsed_time_until_break, break_duration, idle_reset } = req.body
+    const prefToUpdate = { gong, elapsed_time_until_break, break_duration, idle_reset }
 
     const numberOfValues = Object.values(prefToUpdate).filter(Boolean).length
     if (numberOfValues === 0) {

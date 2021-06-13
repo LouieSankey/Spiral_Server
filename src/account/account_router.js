@@ -13,19 +13,6 @@ const jsonParser = express.json()
 
 accountRouter
   .route('/')
-  //I think this will get deleted
-  // .get((req, res, next) => {
-  //   AccountService.getAllAccounts(
-  //     req.app.get('db')
-  //   )
-  //     .then(accounts => {
-  //       res.json(accounts)
-  //     })
-  //     .catch(next)
-  // })
-
-
-  //this creates a new account
   .post(jsonParser, async (req, res, next) => {
 
     const salt = await bcrypt.genSalt()

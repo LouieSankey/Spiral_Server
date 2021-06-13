@@ -8,15 +8,6 @@ const jsonParser = express.json()
 
 taskRouter
   .route('/')
-  // .get(authenticate, (req, res, next) => {
-  //   TaskService.getAllTasks(
-  //     req.app.get('db')
-  //   )
-  //     .then(tasks => {
-  //       res.json(tasks) 
-  //     })
-  //     .catch(next)
-  // })
   .post(jsonParser, authenticate, (req, res, next) => {
     const { account, project, task, cycle} = req.body
     const newTask = { account, project, task, cycle }
